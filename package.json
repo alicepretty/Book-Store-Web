@@ -1,0 +1,22 @@
+{
+  "name": "bookstoresite",
+  "version": "1.0.0",
+  "description": "I  create a basic application with MERN Stack, It will  be a Book Store website with CRUD Functionality.",
+  "main": "apps.js",
+  "type": "module",
+  "scripts": {
+    "start": "kill-port 5000 && node apps.js",
+    "dev": "kill-port 5000 && nodemon apps.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
