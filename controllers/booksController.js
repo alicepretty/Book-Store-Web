@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import errorResponse from "../utils/error.js";
 import successResponse from "../utils/succes.js";
+import Book  from "../models/bookModel.js";
 
 // @desc get all books
 // @endpoints Get /books/getAllBooks
@@ -25,11 +26,17 @@ const getAllBooks = asyncHandler(async (req, res) => {
 
 const createbook = asyncHandler(async (req, res) => {
   try {
+    console.log(req.body); // Add this line
+
     const book = await Book.create(req.body);
 
     return successResponse(res, 201, "Successfully Book created ", book);
   } catch (error) {
-    return errorResponse(res,500,`Error while fetching data ${error.message}` );
+    return errorResponse(
+      res,
+      500,
+      `Error while fetching data ${error.message}`
+    );
   }
 });
 
@@ -39,7 +46,8 @@ const createbook = asyncHandler(async (req, res) => {
 
 const getSingleBook = asyncHandler(async (req, res) => {
   try {
-    const book = await Book.findById(req.params.id);
+    console.log(req.params.bookId);
+    const book = await Book.findById(req.params.bookId);
 
     if (!book) {
       return res.status(404).json({ message: "Book not found" });
@@ -58,7 +66,7 @@ const getSingleBook = asyncHandler(async (req, res) => {
 
 const Updatebook = asyncHandler(async (req, res) => {
   try {
-    const book = await Book.findByIdAndUpdate(req.params.id);
+    const book = await Book.findByIdAndUpdate(req.params.bookId);
     if (!book) {
       return res.status(404).json({ message: "Book not found" });
     }
@@ -75,7 +83,7 @@ const Updatebook = asyncHandler(async (req, res) => {
 
 const deletebook = asyncHandler(async (req, res) => {
   try {
-    const book = await Book.findByIdAndDelete(req.params.id);
+    const book = await Book.findByIdAndDelete(req.params.bookId);
 
     if (!book) {
       return res.status(404).json({ message: "Book not found" });
