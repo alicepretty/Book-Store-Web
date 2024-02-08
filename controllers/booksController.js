@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import errorResponse from "../utils/error.js";
 import successResponse from "../utils/succes.js";
+import Book  from "../models/bookModel.js";
 
 // @desc get all books
 // @endpoints Get /books/getAllBooks
